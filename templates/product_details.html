@@ -1,0 +1,141 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+ 
+</head>
+<body>
+     <div class="container-fluid">
+        <div class="row mt-4 ">  <!--header section start or 1st row start-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="index.html">E-shopping402 </a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">logout</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="register.html">Register</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                      </li>
+                      
+                      
+                    </ul>
+                    <form class="d-flex">
+                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                      <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                  </div>
+                </div>
+              </nav>
+        </div><!--Header section end-->
+        <!-- {% block 'main' %} -->
+        
+           <div class="row mt-4 p-3" ><!--main section start-->
+            {% for i in data %}
+                <div class="col-md-9 mx-auto">
+                  {% if success %}
+
+                  <div class="alert alert-success" role="alert">
+                          {{success}}
+
+                   </div>
+
+                 {% endif %}
+                 {% if errmsg %}
+
+              <div class="alert alert-danger" role="alert">
+                {{errmsg}}
+
+              </div>
+
+              {% endif %}
+                  
+                    <div class="row">
+                        <div class="col-md-5"><!--image Section start-->
+
+                        <img src="{{i.pimage.url}} " width="100%" height="200px">
+                        </div><!--image section end-->
+                        <div class="col-md-7"><!--detail section start-->
+                         
+                          <p><strong>Product Name:</strong>{{i.name}}</p>
+                          {% if i.cat == 1 %}
+                          <p><strong>Category :</strong>Mobile</p>
+                          {% elif i.cat == 2 %}
+                          <p><strong>Category :</strong>Shoes</p>
+                          {% else %}
+                          <p><strong>Category :</strong>Cloth</p>
+                          {% endif %}
+                          <p><strong>Product Details:</strong>{{i.pdetail}}</p>
+                          <p><strong>Price :</strong>{{i.price}}</p>
+                          <p>
+                            <a href="/addtocart/{{i.id}}"><button class="btn btn-danger">Add to Card</button></a>
+                            <a href="/cart"><button class="btn btn-danger">View cart</button></a>
+                            <a href="/product"><button class="btn btn-danger">Shop More</button></a>
+                          </p>
+
+                        </div><!--detail section end-->
+
+                    </div>
+                    
+                </div>
+                {% endfor %}
+           </div>
+          
+           <!-- {% endblock 'main' %} -->
+           <!--Main Secvtion End-->
+
+
+
+        <div class="row mt-4 p-4 bg-light">  <!--footer section start or 3rd row start-->
+            <div class="col-md-4">
+              <h5>Address</h5><hr>
+              22-B,1st floor,<br>
+              Rainbow plaza,<br>
+              shivar chowk,pimple saudagar,<br>
+              pune 411027
+            </div>
+            <div class="col-md-4">
+              <h5>Quick Links</h5><hr>
+              <a href="index.html">Home</a><br>
+              <a href="#">About</a><br>
+              <a href="#"> Contact</a>
+            </div>
+            <div class="col-md-4">
+              <h5>social media icons</h5><hr>
+             <a href="#"><i class="bi bi-linkedin">Linkedin</i><br></a>
+              <a href=""><i class="bi bi-facebook"></i>Facebook<br></a>
+              <a href=""><i class="bi bi-instagram">Instagram</i><br></a>
+              <a href=""><i class="bi bi-twitter">twitter</i></a>
+            </div>
+         </div><!--footer section end-->
+
+     </div>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/popper.js"></script>
+
+</body>
+</html>

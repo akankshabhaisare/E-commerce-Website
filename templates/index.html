@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+
+<div class="row mt-4 p-4">  <!--main section start or 2st row start-->
+    <div class="col-md-3"><!--side bar start-->
+     <h5>Filter By category</h5><hr>
+     <a href="/product">All</a><br>
+     <a href="/catfilter/1">Mobile</a><br>
+     <a href="/catfilter/2">Shoes</a><br>
+     <a href="/catfilter/3">cloth</a><br>
+
+     <h5>Filter By Price</h5><hr>
+     <form action="/pricefilter" method="get">
+       <div class="mb-1">
+         <label for="Input1" class="form-label">Min</label>
+         <input type="number" class="form-control" id="Input1" name="min">
+       </div>
+       <div class="mb-1">
+         <label for="Input2" class="form-label">Max</label>
+         <input type="number" class="form-control" id="Input2" name="max">
+       </div>
+       
+      
+       <button class="btn btn-primary">Filter</button>
+     </form><br>
+     <h5>Sort By Price</h5><hr>
+     <a href="/sort/1">High to Low</a><br>
+     <a href="/sort/0"> Low to High</a> 
+
+    </div><!--side bar end-->
+    <div class="col-md-9"><!--Product list section start-->
+        <div class="row">
+          {% for i in data %}
+         <div class="col-md-3"><!--p-1-end-->
+           <div class="card " style="width: 100%;">
+             <img src="{{i.pimage.url}}" class="card-img-top " alt="..." height="180px ">
+             <div class="card-body">
+               <h5 class="card-title">{{i.name}}</h5>
+               <p class="card-text"><b>Price:</b>  Rs.{{i.price}}</p>
+               <a href="product_details/{{i.id}}" class="btn btn-primary">See Detail </a>
+             </div>
+           </div>      
+         </div><!--p-1end-->
+        {% endfor %}
+
+        {% if errmsg %}
+
+              <div class="alert alert-danger" role="alert">
+                {{errmsg}}
+
+              </div>
+
+              {% endif %}
+        </div>
+    </div><!--Product list section end-->
+
+
+  </div><!--main section end-->
+
+{% endblock 'main' %}
